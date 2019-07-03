@@ -26,7 +26,7 @@ class _LoginPageState extends State<LoginSignupPage> {
   FormMode _formMode = FormMode.LOGIN;
   bool _isIos;
   bool _isLoading;
-  String passwordText = "";
+  String passwordText = "Password";
 
   // Check if form is valid before performing login or signup
   bool _validateAndSave() {
@@ -44,35 +44,41 @@ class _LoginPageState extends State<LoginSignupPage> {
       _errorMessage = "";
       _isLoading = true;
     });
-    if (_validateAndSave()) {
-      String userId = "";
-      try {
-        if (_formMode == FormMode.LOGIN) {
-          userId = await widget.auth.signIn(_email, _password);
-          print('Signed in: $userId');
-        } else {
-          userId = await widget.auth.signUp(_email, _password);
-          widget.auth.sendEmailVerification();
-          _showVerifyEmailSentDialog();
-          print('Signed up user: $userId');
-        }
-        setState(() {
-          _isLoading = false;
-        });
+    if(_formMode == FormMode.FORGOTPASSWORD){
+      print("EMAIL IN QUESTION: "+_email);
+      widget.auth.resetPassword(_email);
+    }
+    else {
+      if (_validateAndSave()) {
+        String userId = "";
+        try {
+          if (_formMode == FormMode.LOGIN) {
+            userId = await widget.auth.signIn(_email, _password);
+            print('Signed in: $userId');
+          } else {
+            userId = await widget.auth.signUp(_email, _password);
+            widget.auth.sendEmailVerification();
+            _showVerifyEmailSentDialog();
+            print('Signed up user: $userId');
+          }
+          setState(() {
+            _isLoading = false;
+          });
 
-        if (userId != null && userId.length > 0 &&
-            _formMode == FormMode.LOGIN) {
-          widget.onSignedIn();
+          if (userId != null && userId.length > 0 &&
+              _formMode == FormMode.LOGIN) {
+            widget.onSignedIn();
+          }
+        } catch (e) {
+          print('Error: $e');
+          setState(() {
+            _isLoading = false;
+            if (_isIos) {
+              _errorMessage = e.details;
+            } else
+              _errorMessage = e.message;
+          });
         }
-      } catch (e) {
-        print('Error: $e');
-        setState(() {
-          _isLoading = false;
-          if (_isIos) {
-            _errorMessage = e.details;
-          } else
-            _errorMessage = e.message;
-        });
       }
     }
   }
@@ -152,25 +158,46 @@ class _LoginPageState extends State<LoginSignupPage> {
       },
     );
   }
-
+  // TODO: SUPER INDIAN CODE IN _showBody()!! We only want to display email field during password reset
   Widget _showBody(){
-    return new Container(
-        padding: EdgeInsets.all(16.0),
-        child: new Form(
-          key: _formKey,
-          child: new ListView(
-            shrinkWrap: true,
-            children: <Widget>[
-              _showLogo(),
-              _showEmailInput(),
-              _showPasswordInput(),
-              _showPrimaryButton(),
-              _showCreateAccountButton(),
-              _showErrorMessage(),
-              _showForgotPasswordButton()
-            ],
-          ),
-        ));
+    if(_formMode == FormMode.FORGOTPASSWORD){
+      return new Container(
+          padding: EdgeInsets.all(16.0),
+          child: new Form(
+            key: _formKey,
+            child: new ListView(
+              shrinkWrap: true,
+              children: <Widget>[
+                _showLogo(),
+                _showEmailInput(),
+                _showPrimaryButton(),
+                _showCreateAccountButton(),
+                _showErrorMessage(),
+                _showForgotPasswordButton()
+              ],
+            ),
+          ));
+    }
+    else{
+      return new Container(
+          padding: EdgeInsets.all(16.0),
+          child: new Form(
+            key: _formKey,
+            child: new ListView(
+              shrinkWrap: true,
+              children: <Widget>[
+                _showLogo(),
+                _showEmailInput(),
+                _showPasswordInput(),
+                _showPrimaryButton(),
+                _showCreateAccountButton(),
+                _showErrorMessage(),
+                _showForgotPasswordButton()
+              ],
+            ),
+          ));
+    }
+
   }
 
   Widget _showErrorMessage() {
@@ -224,30 +251,30 @@ class _LoginPageState extends State<LoginSignupPage> {
   }
 
   Widget _showPasswordInput() {
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
-      child:
-      new TextFormField(
-        maxLines: 1,
-        obscureText: true,
-        autofocus: false,
-        decoration: new InputDecoration(
-            hintText: passwordText,
-            icon: new Icon(
-              Icons.lock,
-              color: Colors.grey,
-            )),
-        validator: (value) {
-          if (value.isEmpty) {
-            setState(() {
-              _isLoading = false;
-            });
-            return 'Email can\'t be empty';
-          }
-        },
-        onSaved: (value) => _password = value,
-      ),
-    );
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(0.0, 15.0, 0.0, 0.0),
+        child:
+        new TextFormField(
+          maxLines: 1,
+          obscureText: true,
+          autofocus: false,
+          decoration: new InputDecoration(
+              hintText: passwordText,
+              icon: new Icon(
+                Icons.lock,
+                color: Colors.grey,
+              )),
+          validator: (value) {
+            if (value.isEmpty) {
+              setState(() {
+                _isLoading = false;
+              });
+              return 'Email can\'t be empty';
+            }
+          },
+          onSaved: (value) => _password = value,
+        ),
+      );
   }
   Widget _showPrimaryButton() {
     return new Padding(
@@ -265,9 +292,10 @@ class _LoginPageState extends State<LoginSignupPage> {
           ),
         );
   }
+
   String _determineButton(){   // This String method determines what the textfield inside the Primary button should be.
     String buttonText="";
-    if(_formMode== FormMode.LOGIN){
+    if(_formMode == FormMode.LOGIN){
       buttonText = "Login";
       return buttonText;
     }

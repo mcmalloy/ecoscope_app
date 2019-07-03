@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:ecoscope_app/pages/login_page.dart';
+import 'package:ecoscope_app/services/authentication.dart';
 
 class ProfilTab extends StatefulWidget {
+  final BaseAuth auth;
+
+  const ProfilTab({Key key, this.auth}) : super(key: key);
   @override
   State createState() => new ProfileTabst();
 }
@@ -9,6 +13,8 @@ class ProfilTab extends StatefulWidget {
 
 
 class ProfileTabst extends State<ProfilTab> with SingleTickerProviderStateMixin {
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +24,7 @@ class ProfileTabst extends State<ProfilTab> with SingleTickerProviderStateMixin 
       children: <Widget>[
         ClipPath(
             child: Container(
-              color: Colors.blue.withOpacity(0.8),
+              color: Colors.green.withOpacity(0.8),
             ),
             clipper: getClipper()),
         Positioned(
@@ -72,7 +78,7 @@ class ProfileTabst extends State<ProfilTab> with SingleTickerProviderStateMixin 
                     elevation: 6.2,
                     child: GestureDetector(
                       onTap: () {
-                        Navigator.pushNamed(context, 'home');
+                        // TODO: Make user sign out. First needs to inherit user data from firebase DB
                       },
                       child: Center(
                         child: Text(
@@ -87,6 +93,13 @@ class ProfileTabst extends State<ProfilTab> with SingleTickerProviderStateMixin 
             ))
       ],
     );
+  }
+  _signOut() async {
+    try {
+      await widget.auth.signOut();
+    } catch (e) {
+      print(e);
+    }
   }
 }
 

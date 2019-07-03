@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ecoscope_app/services/authentication.dart';
 import 'package:ecoscope_app/pages/home_page.dart';
 import 'package:ecoscope_app/pages/login_page.dart';
+import 'package:ecoscope_app/models/MenuTabs.dart';
+import 'package:ecoscope_app/pages/ProfileTab.dart';
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});
@@ -78,11 +80,12 @@ class _RootPageState extends State<RootPage> {
         break;
       case AuthStatus.LOGGED_IN:
         if (_userId.length > 0 && _userId != null) {
-          return new HomePage(
-            userId: _userId,
-            auth: widget.auth,
-            onSignedOut: _onSignedOut,
-          );
+//          return new HomePage(
+//            userId: _userId,
+//            auth: widget.auth,
+//            onSignedOut: _onSignedOut,
+//          );
+        return new MenuTabs();
         } else return _buildWaitingScreen();
         break;
       default:

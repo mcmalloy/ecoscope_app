@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 //next level
 import 'package:ecoscope_app/pages/ProfileTab.dart';
 import 'package:ecoscope_app/pages/ElectricityMonitoringTab.dart';
-class OtherScreen extends StatelessWidget {
+class MenuTabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return new DefaultTabController(
