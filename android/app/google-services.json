@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "968239407021",
+    "firebase_url": "https://ecoscopefirebase.firebaseio.com",
+    "project_id": "ecoscopefirebase",
+    "storage_bucket": "ecoscopefirebase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:968239407021:android:b065af89ff3e3cfc",
+        "android_client_info": {
+          "package_name": "com.ecoscope.ecoscope_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "968239407021-c3gdqcpcpkgs7j6d95eomagto0e9tvks.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoXZ48IKOTt7K5XCzrFD2oXP443934-Q0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "968239407021-c3gdqcpcpkgs7j6d95eomagto0e9tvks.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
