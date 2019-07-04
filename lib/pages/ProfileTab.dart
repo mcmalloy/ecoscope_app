@@ -2,24 +2,21 @@ import 'package:flutter/material.dart';
 import 'package:ecoscope_app/pages/login_page.dart';
 import 'package:ecoscope_app/services/authentication.dart';
 
-class ProfilTab extends StatefulWidget {
-  final BaseAuth auth;
+class ProfileTab extends StatefulWidget {
+  ProfileTab({Key key, this.auth, this.userId, this.onSignedOut})
+      : super(key: key);
 
-  const ProfilTab({Key key, this.auth}) : super(key: key);
+  final BaseAuth auth;
+  final VoidCallback onSignedOut;
+  final String userId;
   @override
-  State createState() => new ProfileTabst();
+  State createState() => new ProfileTabstate();
 }
 
-
-
-class ProfileTabst extends State<ProfilTab> with SingleTickerProviderStateMixin {
-
-
-
+class ProfileTabstate extends State<ProfileTab>{
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
-
     return new Stack(
       children: <Widget>[
         ClipPath(
@@ -68,38 +65,10 @@ class ProfileTabst extends State<ProfilTab> with SingleTickerProviderStateMixin 
                 SizedBox(
                   height: 40.0,
                 ),
-                Container(
-                  height: 55,
-                  width: 150,
-                  child: Material(
-                    borderRadius: BorderRadius.circular(30.0),
-                    shadowColor: Colors.lightGreen,
-                    color: Colors.lightGreen,
-                    elevation: 6.2,
-                    child: GestureDetector(
-                      onTap: () {
-                        // TODO: Make user sign out. First needs to inherit user data from firebase DB
-                      },
-                      child: Center(
-                        child: Text(
-                          'logout',
-                          style: TextStyle(color: Colors.white, fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
               ],
             ))
       ],
     );
-  }
-  _signOut() async {
-    try {
-      await widget.auth.signOut();
-    } catch (e) {
-      print(e);
-    }
   }
 }
 

@@ -12,9 +12,8 @@ class MonitorTab extends State<ElectricityMonitoringTab> {
   Widget build(BuildContext context) {
     Map<String, double> dataMap = new Map();
     dataMap.putIfAbsent("Desktop PC", () => 5);
-    dataMap.putIfAbsent("Kitchen/Appliances", () => 3);
-    dataMap.putIfAbsent("Television/Entertainment", () => 2);
-    dataMap.putIfAbsent("Not farming Marijuana", () => 2);
+    dataMap.putIfAbsent("Appliances", () => 3);
+    dataMap.putIfAbsent("Entertainment", () => 2);
     // TODO: implement build
     return PieChart(dataMap: dataMap,
       legendFontColor: Colors.blueGrey[900],

@@ -11,7 +11,6 @@ class HomePage extends StatefulWidget {
   final BaseAuth auth;
   final VoidCallback onSignedOut;
   final String userId;
-
   @override
   State<StatefulWidget> createState() => new _HomePageState();
 }
