@@ -12,11 +12,15 @@ class MenuTabs extends StatefulWidget {
   final VoidCallback onSignedOut;
   final String userId;
   @override
-  State createState() => new MenuTabsState();
+  State createState() => new MenuTabsState(auth: auth,onSignedOut: onSignedOut,userId: userId);
 }
 
 class MenuTabsState extends State<MenuTabs>{
+  MenuTabsState({Key key, this.auth, this.userId, this.onSignedOut});
 
+  final BaseAuth auth;
+  final VoidCallback onSignedOut;
+  final String userId;
   @override
   Widget build(BuildContext context) {
     return new DefaultTabController(
@@ -44,7 +48,7 @@ class MenuTabsState extends State<MenuTabs>{
 
           body: new TabBarView(
             children:<Widget>[ // Each child is the content for each of the 3 tabs.
-              new ProfileTab(),
+              new ProfileTab(auth: auth,onSignedOut: onSignedOut, userId: userId),
               new ElectricityMonitoringTab(),
             ],
           )),

@@ -15,12 +15,15 @@ abstract class BaseAuth {
   Future<bool> isEmailVerified();
 
   Future<void> resetPassword(String email);
+
+  String getCurrentEmail();
 }
 
 class Auth implements BaseAuth {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-
+  static String currentEmail = "";
   Future<String> signIn(String email, String password) async {
+    currentEmail = email;
     FirebaseUser user = await _firebaseAuth.signInWithEmailAndPassword(
         email: email, password: password);
     return user.uid;
@@ -55,4 +58,7 @@ class Auth implements BaseAuth {
     return _firebaseAuth.sendPasswordResetEmail(email: email);
   }
 
+  String getCurrentEmail(){
+    return currentEmail;
+  }
 }

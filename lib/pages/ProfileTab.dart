@@ -14,6 +14,12 @@ class ProfileTab extends StatefulWidget {
 }
 
 class ProfileTabstate extends State<ProfileTab>{
+  ProfileTabstate({Key key, this.auth, this.userId, this.onSignedOut});
+
+  final BaseAuth auth;
+  final VoidCallback onSignedOut;
+  final String userId;
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
@@ -21,7 +27,7 @@ class ProfileTabstate extends State<ProfileTab>{
       children: <Widget>[
         ClipPath(
             child: Container(
-              color: Colors.green.withOpacity(0.8),
+              color: Colors.lightGreen.withOpacity(0.7),
             ),
             clipper: getClipper()),
         Positioned(
@@ -30,7 +36,6 @@ class ProfileTabstate extends State<ProfileTab>{
             top: MediaQuery.of(context).size.height / 5,
             child: Column(
               children: <Widget>[
-
                 //profilbillede
                 Container(
                   width: 100,
@@ -42,34 +47,40 @@ class ProfileTabstate extends State<ProfileTab>{
                           fit: BoxFit.cover),
                       borderRadius: BorderRadius.all(Radius.circular(75))),
                 ),
-
-                SizedBox(height: 20.0),
+                SizedBox(height: 10.0),
                 Text(
-                  'default User',
+                  'User name goes here',
                   style: TextStyle(
                     fontSize: 23.0,
                   ),
                 ),
                 SizedBox(height: 10.0),
                 Text(
-                  'Email: placeholderEmail',
+                  widget.auth.getCurrentEmail(),
                   style: TextStyle(
                     fontSize: 13.0,
                     fontStyle: FontStyle.italic,
                   ),
                 ),
+           new RaisedButton(
+             child:
+            const Text('Add a new power source'),
+            color: Theme.
+            of(context).accentColor,
+            elevation: 4.0,
+            splashColor: Colors.
+            blueGrey,
+            onPressed: () {
+              // Perform some action
 
-                SizedBox(
-                  height: 40.0,
-                ),
-                SizedBox(
-                  height: 40.0,
-                ),
+            },
+          )
               ],
             ))
       ],
     );
   }
+
 }
 
 class getClipper extends CustomClipper<Path> {

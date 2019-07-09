@@ -226,7 +226,7 @@ class _LoginPageState extends State<LoginSignupPage> {
 
   Widget _showEmailInput() {
     return Padding(
-      padding: const EdgeInsets.fromLTRB(0.0, 100.0, 0.0, 0.0),
+      padding: const EdgeInsets.fromLTRB(0.0, 20.0, 0.0, 0.0),
       child: new TextFormField(
         maxLines: 1,
         keyboardType: TextInputType.emailAddress,
@@ -278,7 +278,7 @@ class _LoginPageState extends State<LoginSignupPage> {
   }
   Widget _showPrimaryButton() {
     return new Padding(
-        padding: EdgeInsets.fromLTRB(0.0, 45.0, 0.0, 0.0),
+        padding: EdgeInsets.fromLTRB(0.0, 30.0, 0.0, 0.0),
         child: SizedBox(
           height: 40.0,
           child: new RaisedButton(
@@ -311,6 +311,7 @@ class _LoginPageState extends State<LoginSignupPage> {
 
   Widget _showCreateAccountButton() {
     return new FlatButton(
+      padding: EdgeInsets.fromLTRB(0, 50, 0, 20),
       child: _formMode == FormMode.LOGIN
           ? new Text('Create an account',
           style: new TextStyle(fontSize: 18.0, fontWeight: FontWeight.w300))
