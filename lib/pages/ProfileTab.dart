@@ -10,11 +10,11 @@ class ProfileTab extends StatefulWidget {
   final VoidCallback onSignedOut;
   final String userId;
   @override
-  State createState() => new ProfileTabstate();
+  State createState() => new _ProfileTabstate();
 }
 
-class ProfileTabstate extends State<ProfileTab>{
-  ProfileTabstate({Key key, this.auth, this.userId, this.onSignedOut});
+class _ProfileTabstate extends State<ProfileTab>{
+  _ProfileTabstate({Key key, this.auth, this.userId, this.onSignedOut});
 
   final BaseAuth auth;
   final VoidCallback onSignedOut;
@@ -49,22 +49,15 @@ class ProfileTabstate extends State<ProfileTab>{
                 ),
                 SizedBox(height: 10.0),
                 Text(
-                  'User name goes here',
+                  widget.auth.getCurrentEmail(),
                   style: TextStyle(
                     fontSize: 23.0,
                   ),
                 ),
                 SizedBox(height: 10.0),
-                Text(
-                  widget.auth.getCurrentEmail(),
-                  style: TextStyle(
-                    fontSize: 13.0,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),
            new RaisedButton(
              child:
-            const Text('Add a new power source'),
+            const Text('My power sources'),
             color: Theme.
             of(context).accentColor,
             elevation: 4.0,

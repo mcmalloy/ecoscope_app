@@ -44,18 +44,22 @@ class _LoginPageState extends State<LoginSignupPage> {
       _errorMessage = "";
       _isLoading = true;
     });
-    if(_formMode == FormMode.FORGOTPASSWORD){
-      print("EMAIL IN QUESTION: "+_email);
-      widget.auth.resetPassword(_email);
-    }
-    else {
       if (_validateAndSave()) {
         String userId = "";
         try {
           if (_formMode == FormMode.LOGIN) {
             userId = await widget.auth.signIn(_email, _password);
             print('Signed in: $userId');
-          } else {
+          }
+          else if(_formMode == FormMode.FORGOTPASSWORD){
+            print("EMAIL IN QUESTION: "+_email);
+            try {
+              await widget.auth.resetPassword(_email);
+            } catch (e) {
+              print(e);
+            }
+          }
+          else {
             userId = await widget.auth.signUp(_email, _password);
             widget.auth.sendEmailVerification();
             _showVerifyEmailSentDialog();
@@ -65,8 +69,7 @@ class _LoginPageState extends State<LoginSignupPage> {
             _isLoading = false;
           });
 
-          if (userId != null && userId.length > 0 &&
-              _formMode == FormMode.LOGIN) {
+          if (userId != null && userId.length > 0 && _formMode == FormMode.LOGIN) {
             widget.onSignedIn();
           }
         } catch (e) {
@@ -80,7 +83,6 @@ class _LoginPageState extends State<LoginSignupPage> {
           });
         }
       }
-    }
   }
   @override
   void initState() {
