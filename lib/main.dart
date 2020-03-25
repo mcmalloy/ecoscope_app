@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:ecoscope_app/models/MenuTabs.dart';
-import 'package:ecoscope_app/pages/login_page.dart';
 import 'package:ecoscope_app/services/authentication.dart';
 import 'package:ecoscope_app/pages/root_page.dart';
 // This main.dart contains the login page.

@@ -1,5 +1,5 @@
+import 'package:ecoscope_app/models/UsageTabs.dart';
 import 'package:flutter/material.dart';
-import 'package:ecoscope_app/pages/login_page.dart';
 import 'package:ecoscope_app/services/authentication.dart';
 
 class ProfileTab extends StatefulWidget {
@@ -67,10 +67,14 @@ class _ProfileTabstate extends State<ProfileTab>{
             splashColor: Colors.
             blueGrey,
             onPressed: () {
+               print("Going to usages");
               // Perform some action
               // TODO: HERE
+              Navigator.push(context,MaterialPageRoute(builder: (context) => UsageTabs()));
             },
-          )
+          ),
+                SizedBox(height: 50,),
+                TextField()
               ],
             ))
       ],
@@ -94,5 +98,6 @@ class getClipper extends CustomClipper<Path> {
     // TODO: implement shouldReclip
     return true;
   }
+
 
 }

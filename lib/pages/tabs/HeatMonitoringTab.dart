@@ -11,8 +11,8 @@ class MonitorTab extends State<HeatMonitoringTab> {
 
   Widget build(BuildContext context) {
     Map<String, double> dataMap = new Map();
-    dataMap.putIfAbsent("Lighting", () => 4);
-    dataMap.putIfAbsent("Appliances", () => 6);
+    dataMap.putIfAbsent("Radiators", () => 4);
+    dataMap.putIfAbsent("AC Unit", () => 6);
     // TODO: implement build
     return PieChart(dataMap: dataMap,
       legendFontColor: Colors.blueGrey[900],
