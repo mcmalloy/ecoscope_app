@@ -3,7 +3,7 @@ import 'package:ecoscope_app/services/authentication.dart';
 import 'package:ecoscope_app/pages/home_page.dart';
 import 'package:ecoscope_app/pages/login_page.dart';
 import 'package:ecoscope_app/models/MenuTabs.dart';
-import 'package:ecoscope_app/pages/ProfileTab.dart';
+import 'package:ecoscope_app/pages/tabs/ProfileTab.dart';
 
 class RootPage extends StatefulWidget {
   RootPage({this.auth});

@@ -45,19 +45,22 @@ class _ProfileTabstate extends State<ProfileTab>{
                       image: DecorationImage(
                           image: AssetImage("assets/default-user-image.png"),
                           fit: BoxFit.cover),
-                      borderRadius: BorderRadius.all(Radius.circular(75))),
+                      borderRadius: BorderRadius.all(Radius.circular(65))),
                 ),
                 SizedBox(height: 10.0),
-                Text(
-                  widget.auth.getCurrentEmail(),
+
+                Text(widget.auth.getCurrentEmail(),textScaleFactor: 0.5,
                   style: TextStyle(
                     fontSize: 23.0,
                   ),
+
                 ),
-                SizedBox(height: 10.0),
+                SizedBox(height: 15.0),
+
+
            new RaisedButton(
              child:
-            const Text('My power sources'),
+            const Text('Absalon Hotel Rooms Overview',textScaleFactor: 1.2,),
             color: Theme.
             of(context).accentColor,
             elevation: 4.0,
@@ -65,7 +68,7 @@ class _ProfileTabstate extends State<ProfileTab>{
             blueGrey,
             onPressed: () {
               // Perform some action
-
+              // TODO: HERE
             },
           )
               ],
@@ -80,7 +83,6 @@ class getClipper extends CustomClipper<Path> {
   @override
   Path getClip(Size size) {
     var path = new Path();
-
     path.lineTo(0.0, size.height / 1.9);
     path.lineTo(size.width + 125, 0.0);
     path.close();
@@ -92,4 +94,5 @@ class getClipper extends CustomClipper<Path> {
     // TODO: implement shouldReclip
     return true;
   }
+
 }
