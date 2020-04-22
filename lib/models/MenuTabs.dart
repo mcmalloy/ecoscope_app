@@ -1,10 +1,7 @@
-import 'package:ecoscope_app/pages/tabs/HeatMonitoringTab.dart';
+import 'package:ecoscope_app/pages/RoomGridView.dart';
 import 'package:flutter/material.dart';
 import 'package:ecoscope_app/pages/RoomPage.dart';
-import 'package:ecoscope_app/pages/tabs/ElectricityMonitoringTab.dart';
-import 'package:ecoscope_app/pages/tabs/WaterMonitoringTab.dart';
 import 'package:ecoscope_app/services/authentication.dart';
-import 'package:firebase_database/firebase_database.dart';
 
 class MenuTabs extends StatefulWidget {
   MenuTabs({Key key, this.auth, this.userId, this.onSignedOut})
@@ -26,7 +23,7 @@ class MenuTabsState extends State<MenuTabs>{
   @override
   Widget build(BuildContext context) {
     return new DefaultTabController(
-      length: 1,
+      length: 2,
       child: Scaffold(
           appBar: AppBar(
             // This removes the back button so that you can only reach the login page by logging out.
@@ -42,7 +39,8 @@ class MenuTabsState extends State<MenuTabs>{
             leading: new Container(),
             bottom: TabBar(
               tabs: [
-                Tab(icon: Icon(Icons.hotel),text: "Rooms",),
+                Tab(icon: Icon(Icons.account_circle),text: "My Profile",),
+                Tab(icon: Icon(Icons.hotel),text: "View Rooms",),
               ],
             ),
           ),
@@ -50,6 +48,7 @@ class MenuTabsState extends State<MenuTabs>{
           body: new TabBarView(
             children:<Widget>[ // Each child is the content for each of the 3 tabs.
               new ProfileTab(auth: auth,onSignedOut: onSignedOut, userId: userId),
+              new Room_Grid(),
             ],
           )),
 

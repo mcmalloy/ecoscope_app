@@ -1,10 +1,8 @@
 import 'package:ecoscope_app/pages/tabs/HeatMonitoringTab.dart';
 import 'package:flutter/material.dart';
-import 'package:ecoscope_app/pages/RoomPage.dart';
 import 'package:ecoscope_app/pages/tabs/ElectricityMonitoringTab.dart';
 import 'package:ecoscope_app/pages/tabs/WaterMonitoringTab.dart';
 import 'package:ecoscope_app/services/authentication.dart';
-import 'package:firebase_database/firebase_database.dart';
 
 class UsageTabs extends StatefulWidget {
   UsageTabs({Key key, this.auth, this.userId, this.onSignedOut})
