@@ -1,7 +1,7 @@
-import 'package:ecoscope_app/pages/tabs/HeatMonitoringTab.dart';
+import 'package:ecoscope_app/pages/tabs_monitoring//HeatMonitoringTab.dart';
 import 'package:flutter/material.dart';
-import 'package:ecoscope_app/pages/tabs/ElectricityMonitoringTab.dart';
-import 'package:ecoscope_app/pages/tabs/WaterMonitoringTab.dart';
+import 'package:ecoscope_app/pages/tabs_monitoring//ElectricityMonitoringTab.dart';
+import 'package:ecoscope_app/pages/tabs_monitoring//WaterMonitoringTab.dart';
 import 'package:ecoscope_app/services/authentication.dart';
 
 class UsageTabs extends StatefulWidget {

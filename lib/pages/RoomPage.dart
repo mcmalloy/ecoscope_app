@@ -1,4 +1,5 @@
 import 'package:ecoscope_app/models/UsageTabs.dart';
+import 'package:ecoscope_app/objects/HotelObject.dart';
 import 'package:flutter/material.dart';
 import 'package:ecoscope_app/services/authentication.dart';
 
@@ -80,7 +81,6 @@ class _ProfileTabstate extends State<ProfileTab>{
       ],
     );
   }
-
 }
 
 class getClipper extends CustomClipper<Path> {
