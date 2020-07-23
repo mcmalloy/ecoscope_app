@@ -1,5 +1,7 @@
 import 'dart:core' as prefix0;
 import 'dart:core';
+import 'dart:math';
+import 'package:ecoscope_app/animations/animated_wave.dart';
 import 'package:flutter/material.dart';
 import 'package:ecoscope_app/services/authentication.dart';
 
@@ -129,6 +131,27 @@ class _LoginPageState extends State<LoginSignupPage> {
           children: <Widget>[
             _showBody(),
             _showCircularProgress(),
+            Container(
+              child: AnimatedWave(
+                color: Color(0xff2bb2bb),
+                height: 120,
+                speed: 0.7,
+              ),
+            ),Container(
+              child: AnimatedWave(
+                color: Color(0xff87d4c5),
+                height: 100,
+                speed: 1.0,
+                offset: pi,
+              ),
+            ),
+        Container(
+          child: AnimatedWave(
+            color: Color(0xff1dd3bd),
+            height: 100,
+            speed: 1.4,
+            offset: pi / 2,
+          ))
           ],
         ));
   }

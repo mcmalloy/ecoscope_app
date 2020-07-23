@@ -9,6 +9,4 @@ class HotelObject{
     this.roomName = roomName;
     this.buttonColor = buttonColor;
   }
-
-
 }
