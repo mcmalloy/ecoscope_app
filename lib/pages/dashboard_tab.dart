@@ -36,8 +36,8 @@ class _DashboardTabState extends State<DashboardTab> {
           height: 180,
           width: 140,
           child: Container(
-            decoration: customBoxShape(Colors.green, Colors.lightGreenAccent)
-          ),
+              decoration:
+                  customBoxShape(Colors.green, Colors.lightGreenAccent)),
         ),
         SizedBox(
           width: 25,
@@ -53,12 +53,12 @@ class _DashboardTabState extends State<DashboardTab> {
     );
   }
 
-    customBoxShape(Color color1, Color color2){
+  customBoxShape(Color color1, Color color2) {
     return BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.bottomCenter,
           end: Alignment.topCenter,
-          colors: [color1,color2],
+          colors: [color1, color2],
         ),
         borderRadius: BorderRadius.only(
             topLeft: Radius.circular(20),
@@ -69,9 +69,41 @@ class _DashboardTabState extends State<DashboardTab> {
 
   Widget centerDashBoardWidget() {
     return Container(
-      height: 180,
-      width: 320,
-      decoration: customBoxShape(Colors.purple,Colors.purpleAccent)
-    );
+        height: 180,
+        width: 320,
+        decoration: customBoxShape(Colors.purple, Colors.purpleAccent),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 20,
+            ),
+            Row(children: [
+              SizedBox(
+                width: 25,
+              ),
+              Text(
+                "Montserrat \nexample",
+                textAlign: TextAlign.left,
+                style: TextStyle(
+                  fontSize: 24,
+                  color: Colors.white,
+                  fontFamily: 'Montserrat',
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],),
+            SizedBox(height: 10,),
+            Row(
+              // Children go from left to right with the row.
+              children: [
+                SizedBox(width: 200,),
+                Icon(Icons.ac_unit,
+                  size: 60,
+                  color: Colors.white,
+                ),
+              ],
+            ),
+          ],
+        ));
   }
 }
